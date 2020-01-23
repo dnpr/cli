@@ -1,0 +1,29 @@
+{
+  "name": "@dnpr/cli",
+  "version": "1.0.0",
+  "description": "Build a command-line user interface with ease.",
+  "author": "dragonman225",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "INDENT=true node test/run-all.js | tap-mocha-reporter spec",
+    "release": "npm publish",
+    "upgrade": "node tools/upgrade-deps.js"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "zora": "^3.1.8",
+    "tap-mocha-reporter": "^5.0.1"
+  },
+  "files": [
+    "src/"
+  ],
+  "homepage": "https://github.com/dnpr/task-manager",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dnpr/task-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dnpr/task-manager/issues"
+  }
+}
