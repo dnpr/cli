@@ -11,12 +11,12 @@ npm install @dnpr/cli
 ## Usage
 
 ```javascript
-const { parseArgs, parseFlagVal } = require("@dnpr/cli")
+const { FlagTypes, parseArgs, parseFlagVal } = require("@dnpr/cli")
 const { args, flags } = parseArgs(process.argv)
-const boolean = parseFlagVal(flags, "-b", "boolean", true)
-const number = parseFlagVal(flags, "-n", "number", 100)
-const string = parseFlagVal(flags, "-s", "string", "hello")
-const obj = parseFlagVal(flags, "-j", "json", { name: "dragonman225" })
+const boolean = parseFlagVal(flags, "-b", FlagTypes.boolean, true)
+const number = parseFlagVal(flags, "-n", FlagTypes.number, 100)
+const string = parseFlagVal(flags, "-s", FlagTypes.string, "hello")
+const obj = parseFlagVal(flags, "-j", FlagTypes.json, { name: "dragonman225" })
 ```
 
 ## API
@@ -66,7 +66,7 @@ Type: *string*
 
 #### valType
 
-Type: *string*, must be one of "boolean", "number", "string", "json".
+Type: *string*, must be one of "boolean", "number", "string", "json". **It is recommended to use the `FlagTypes` constant as shown in [Usage](#Usage) instead of directly specifying the strings.**
 
 Behavior of each `valType`:
  
