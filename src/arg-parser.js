@@ -1,3 +1,10 @@
+const FlagTypes = {
+  boolean: "boolean",
+  number: "number",
+  string: "string",
+  json: "json"
+}
+
 /**
  * Parse an argument vector into flags (arguments prefixed with "-") 
  * and normal arguments.
@@ -24,7 +31,9 @@ function parseArgs(argv) {
  * Parse a flag and return the parsed value in the specified type or 
  * return the default value.
  * 
- * Supported `valType`: "boolean", "number", "string", "json". 
+ * Supported `valType`: "boolean" (`FlagTypes.boolean`), 
+ * "number" (`FlagTypes.number`), "string" (`FlagTypes.string`), 
+ * "json" (`FlagTypes.json`). 
  * Always return `defaultVal` if `valType` does not match any of the above.
  * 
  * Behavior of each `valType`:
@@ -67,12 +76,12 @@ function parseFlagVal(flags, findPrefix, valType, defaultVal) {
 
   switch (valType) {
 
-    case "boolean": {
+    case FlagTypes.boolean: {
       if (val) return val === "true"
       else return true
     }
 
-    case "number": {
+    case FlagTypes.number: {
       if (val) {
         const maybeNum = Number(val)
         return (Number.isNaN(maybeNum)) ? defaultVal : maybeNum
@@ -81,12 +90,12 @@ function parseFlagVal(flags, findPrefix, valType, defaultVal) {
       }
     }
 
-    case "string": {
+    case FlagTypes.string: {
       if (val) return val
       else return defaultVal
     }
 
-    case "json": {
+    case FlagTypes.json: {
       if (val) {
         try {
           const obj = JSON.parse(val)
@@ -106,5 +115,5 @@ function parseFlagVal(flags, findPrefix, valType, defaultVal) {
 }
 
 module.exports = {
-  parseArgs, parseFlagVal
+  FlagTypes, parseArgs, parseFlagVal
 }

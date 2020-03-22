@@ -1,5 +1,5 @@
 const { test } = require("zora")
-const { parseArgs, parseFlagVal } = require("../src/arg-parser")
+const { FlagTypes, parseArgs, parseFlagVal } = require("../src/arg-parser")
 
 test("parseArgs()", (t) => {
   const argv = ["node", "index.js", "-i", "-s=6", "hello", "-b", "world"]
@@ -11,7 +11,7 @@ test("parseArgs()", (t) => {
 test("parseFlagVal()", (t) => {
   t.test("boolean", (t) => {
     const findPrefix = "-b"
-    const valType = "boolean"
+    const valType = FlagTypes.boolean
     const defaultVal = false
     const flags1 = ["-b=true"]
     const flags2 = ["-b=xxx"]
@@ -29,7 +29,7 @@ test("parseFlagVal()", (t) => {
 
   t.test("number", (t) => {
     const findPrefix = "-n"
-    const valType = "number"
+    const valType = FlagTypes.number
     const defaultVal = 2020
     const flags1 = ["-n=101"]
     const flags2 = ["-n=hello"]
@@ -50,7 +50,7 @@ test("parseFlagVal()", (t) => {
 
   t.test("string", (t) => {
     const findPrefix = "-s"
-    const valType = "string"
+    const valType = FlagTypes.string
     const defaultVal = "NAST"
     const flags1 = ["-s=hello"]
     const flags2 = ["-s"]
@@ -65,7 +65,7 @@ test("parseFlagVal()", (t) => {
 
   t.test("json", (t) => {
     const findPrefix = "-j"
-    const valType = "json"
+    const valType = FlagTypes.json
     const defaultVal = { username: "dragonman225", password: "hello" }
     const flags1 = [`-j={"username": "alan", "password": "world"}`]
     const flags2 = [`-j={"username": "alan"`]
