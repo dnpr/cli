@@ -11,8 +11,8 @@ npm install @dnpr/cli
 ## Usage
 
 ```javascript
-const { FlagTypes, parseArgs, parseFlagVal } = require("@dnpr/cli")
-const { args, flags } = parseArgs(process.argv)
+const { FlagTypes, parseArgv, parseFlagVal } = require("@dnpr/cli")
+const { args, flags } = parseArgv(process.argv)
 const boolean = parseFlagVal(flags, "-b", FlagTypes.boolean, true)
 const number = parseFlagVal(flags, "-n", FlagTypes.number, 100)
 const string = parseFlagVal(flags, "-s", FlagTypes.string, "hello")
@@ -62,21 +62,23 @@ Type: *string[]*
 
 e.g. "-flag"
 
+It can also be a regex, such as "(-f|--flag)".
+
 Type: *string*
 
 #### valType
 
-Type: *string*, must be one of "boolean", "number", "string", "json". **It is recommended to use the `FlagTypes` constant as shown in [Usage](#Usage) instead of directly specifying the strings.**
+Type: *string*, <s>must be one of "boolean", "number", "string", "json".</s> **It is recommended to use the `FlagTypes` constant as shown in [Usage](#Usage) instead of directly specifying the strings.**
 
 Behavior of each `valType`:
  
-"boolean" — If the flag is found and it has a value, i.e. the "xxx" in "-bool=xxx", this function returns true only when the value is "true". If the flag is found but it has no value, this function returns true. Otherwise, this function returns `defaultVal`.
+`FlagTypes.boolean` — If the flag is found and it has a value, i.e. the "xxx" in "-bool=xxx", this function returns true only when the value is "true". If the flag is found but it has no value, this function returns true. Otherwise, this function returns `defaultVal`.
 
-"number" — If the flag has value, the value is parsed with Number(), if the parsed value is Number.NaN, this function returns `defaultVal`, otherwise it returns the parsed number. If the flag has no value or it is not found, this function always returns `defaultVal`.
+`FlagTypes.number` — If the flag has value, the value is parsed with Number(), if the parsed value is Number.NaN, this function returns `defaultVal`, otherwise it returns the parsed number. If the flag has no value or it is not found, this function always returns `defaultVal`.
 
-"string" — If the flag has value, this function returns the value. Otherwise, it returns `defaultVal`.
+`FlagTypes.string` — If the flag has value, this function returns the value. Otherwise, it returns `defaultVal`.
 
-"json" — If the flag has value and the value can be parsed by `JSON.parse()`, this function returns the value. Otherwise, it returns `defaultVal`.
+`FlagTypes.json` — If the flag has value and the value can be parsed by `JSON.parse()`, this function returns the value. Otherwise, it returns `defaultVal`.
 
 #### defaultVal
 
