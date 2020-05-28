@@ -10,7 +10,7 @@ const FlagTypes = {
  * and normal arguments.
  * @param {string[]} argv 
  */
-function parseArgs(argv) {
+function parseArgv(argv) {
   let flags = []
   let args = []
 
@@ -115,5 +115,5 @@ function parseFlagVal(flags, findPrefix, valType, defaultVal) {
 }
 
 module.exports = {
-  FlagTypes, parseArgs, parseFlagVal
+  FlagTypes, parseArgv, parseFlagVal
 }

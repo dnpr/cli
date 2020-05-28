@@ -1,10 +1,10 @@
 const { test } = require("zora")
-const { FlagTypes, parseArgs, parseFlagVal } = require("../src/arg-parser")
+const { FlagTypes, parseArgv, parseFlagVal } = require("../src/argv-parser")
 
-test("parseArgs()", (t) => {
+test("parseArgv()", (t) => {
   const argv = ["node", "index.js", "-i", "-s=6", "hello", "-b", "world"]
-  const { args, flags } = parseArgs(argv)
-  t.deepEqual(args, ["hello", "world"], "It should return args")
+  const { args, flags } = parseArgv(argv)
+  t.deepEqual(args, ["hello", "world"], "It should return normal args")
   t.deepEqual(flags, ["-i", "-s=6", "-b"], "It should return flags")
 })
 

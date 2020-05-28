@@ -1,7 +1,7 @@
 const path = require("path")
 const { spawn } = require("child_process")
 
-const tasks = ["arg-parser.spec.js"]
+const tasks = ["argv-parser.spec.js"]
 
 for (let i = 0; i < tasks.length; i++) {
   const taskProcess =

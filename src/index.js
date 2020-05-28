@@ -1,3 +1,3 @@
-const { FlagTypes, parseArgs, parseFlagVal } = require("./arg-parser")
+const { FlagTypes, parseArgv, parseFlagVal } = require("./argv-parser")
 
-module.exports = { FlagTypes, parseArgs, parseFlagVal }
+module.exports = { FlagTypes, parseArgv, parseFlagVal }
