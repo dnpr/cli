@@ -1,6 +1,6 @@
 {
   "name": "@dnpr/cli",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Build a command-line user interface with ease.",
   "author": "dragonman225",
   "license": "MIT",
@@ -18,12 +18,12 @@
   "files": [
     "src/"
   ],
-  "homepage": "https://github.com/dnpr/task-manager",
+  "homepage": "https://github.com/dnpr/cli",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dnpr/task-manager.git"
+    "url": "https://github.com/dnpr/cli.git"
   },
   "bugs": {
-    "url": "https://github.com/dnpr/task-manager/issues"
+    "url": "https://github.com/dnpr/cli/issues"
   }
 }
