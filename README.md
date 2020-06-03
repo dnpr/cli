@@ -23,15 +23,14 @@ const obj = parseFlagVal(flags, "-j", FlagTypes.json, { name: "dragonman225" })
 
 This library interprets arguments with the following rules:
 
-* Arguments prefixed with "-" are treated as **flags**. **flags** are key-value pairs, e.g. "-flag=hello", and this library can parse values from flags. Note that the "=" cannot be omitted.
-
-* Arguments not prefixed with "-" are treated as **normal arguments**. They are just strings, and this library don't touch them.
+* An argument starting with "-" is a **flag**. It is a key-value pair in the form "-key=value". Note that when specifying a value, "=" cannot be omitted.
+* An argument not starting with "-" is a **normal argument**. This library does not process it.
 
 ---
 
-### parseArgs(argv)
+### parseArgv(argv)
 
-Parse an argument vector into flags (arguments prefixed with "-") and normal arguments.
+Parse an argument vector into **flag**s and **normal argument**s.
 
 #### argv
 
@@ -39,14 +38,12 @@ Type: *string[]*
 
 #### @returns
 
-```
+```javascript
 {
-  args: string[]
-  flags: string[]
+  flags: string[], // flags
+  args: string[]   // normal arguments
 }
 ```
-
-`args` are normal arguments. `flags` are arguments prefixed with "-".
 
 ---
 
@@ -60,21 +57,23 @@ Type: *string[]*
 
 #### findPrefix
 
+Type: *string*
+
 e.g. "-flag"
 
 It can also be a regex, such as "(-f|--flag)".
 
-Type: *string*
-
 #### valType
 
-Type: *string*, <s>must be one of "boolean", "number", "string", "json".</s> **It is recommended to use the `FlagTypes` constant as shown in [Usage](#Usage) instead of directly specifying the strings.**
+Type: *string*, <s>must be one of "boolean", "number", "string", "json".</s>
+
+**It is recommended to use the `FlagTypes` constant as shown in [Usage](#Usage) instead of directly specifying the strings.**
 
 Behavior of each `valType`:
- 
+
 `FlagTypes.boolean` — If the flag is found and it has a value, i.e. the "xxx" in "-bool=xxx", this function returns true only when the value is "true". If the flag is found but it has no value, this function returns true. Otherwise, this function returns `defaultVal`.
 
-`FlagTypes.number` — If the flag has value, the value is parsed with Number(), if the parsed value is Number.NaN, this function returns `defaultVal`, otherwise it returns the parsed number. If the flag has no value or it is not found, this function always returns `defaultVal`.
+`FlagTypes.number` — If the flag has value, the value is parsed with `Number()`, if the parsed value is `Number.NaN`, this function returns `defaultVal`, otherwise it returns the parsed number. If the flag has no value or it is not found, this function always returns `defaultVal`.
 
 `FlagTypes.string` — If the flag has value, this function returns the value. Otherwise, it returns `defaultVal`.
 
